@@ -87,6 +87,7 @@ function create_service() {
         --task-definition "$task_definition" \
         --desired-count "$desired_count" \
         --deployment-configuration "maximumPercent=${max_deploy_perc},minimumHealthyPercent=${min_deploy_perc}" \
+        --network-configuration "$network_configuration" \
         $target_group_arguments
     fi
 }
@@ -143,10 +144,6 @@ fi
 
 if [[ -n "${network_mode}" ]]; then
     register_command+=" --network-mode ${network_mode}"
-fi
-
-if [[ -n "${network_configuration}" ]]; then
-    register_command+=" --network-configuration ${network_configuration}"
 fi
 
 if [[ -n "${task_cpu}" ]]; then
