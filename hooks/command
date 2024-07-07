@@ -88,7 +88,7 @@ function create_service() {
         --desired-count "$desired_count" \
         --deployment-configuration "maximumPercent=${max_deploy_perc},minimumHealthyPercent=${min_deploy_perc}" \
         --network-configuration "$network_configuration" \
-        $target_group_arguments
+        $target_group_arguments > /dev/null
     fi
 }
 
