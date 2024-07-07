@@ -42,6 +42,7 @@ execution_role=${BUILDKITE_PLUGIN_ECS_DEPLOY_EXECUTION_ROLE:-""}
 region=${BUILDKITE_PLUGIN_ECS_DEPLOY_REGION:-""}
 requires_compatibilities=${BUILDKITE_PLUGIN_ECS_DEPLOY_REQUIRES_COMPATIBILITIES:-""}
 network_mode=${BUILDKITE_PLUGIN_ECS_DEPLOY_NETWORK_MODE:-""}
+network_configuration=${BUILDKITE_PLUGIN_ECS_DEPLOY_NETWORK_CONFIGURATION:-""}
 task_cpu=${BUILDKITE_PLUGIN_ECS_DEPLOY_CPU:-""}
 task_memory=${BUILDKITE_PLUGIN_ECS_DEPLOY_MEMORY:-""}
 
@@ -142,6 +143,10 @@ fi
 
 if [[ -n "${network_mode}" ]]; then
     register_command+=" --network-mode ${network_mode}"
+fi
+
+if [[ -n "${network_configuration}" ]]; then
+    register_command+=" --network-configuration ${network_configuration}"
 fi
 
 if [[ -n "${task_cpu}" ]]; then
